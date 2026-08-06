@@ -186,7 +186,14 @@ return {
   },
   {
     "AstroNvim/astroui",
-    opts = { colorscheme = "astrolight" },
+    opts = function(_, opts)
+      opts.colorscheme = "astrolight"
+
+      -- OSC palette writes can be rendered as dark popup bars by some terminals.
+      if type(opts.lazygit) == "table" and type(opts.lazygit.theme) == "table" then
+        opts.lazygit.theme[241] = nil
+      end
+    end,
     config = function(_, opts)
       local astroui = require "astroui"
       astroui.setup(opts)
