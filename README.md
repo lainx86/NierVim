@@ -4,18 +4,26 @@ NierVim adalah konfigurasi Neovim personal dengan tampilan yang terinspirasi
 antarmuka lockscreen NieR: Automata. Paletnya menggunakan latar krem, warna
 aksen gelap, serta syntax highlighting berkontras tinggi.
 
-Konfigurasi ini ditenagai oleh
-[AstroNvim v6](https://github.com/AstroNvim/AstroNvim). Nama package, module,
-dan API AstroNvim tetap dipertahankan karena merupakan dependency internal
-NierVim.
+Konfigurasi ini berdiri sendiri dan menggunakan `lazy.nvim` sebagai plugin
+manager. Options, keymaps, LSP, formatting, statusline, tabline, dashboard,
+dan colorscheme dikonfigurasi langsung di repository ini.
 
 ## Fitur
 
 - Dashboard kustom dengan identitas NierVim
-- Tema terang bergaya NieR dengan syntax berkontras tinggi
-- Dukungan LSP, Treesitter, formatting, dan diagnostics
+- Colorscheme lokal `nier` dengan syntax berkontras tinggi
+- LSP dan diagnostics menggunakan API native Neovim
+- Completion melalui `blink.cmp`
+- Treesitter, formatting otomatis, Git signs, file explorer, dan fuzzy finder
 - Lazy loading melalui lazy.nvim
 - Konfigurasi modular di dalam direktori `lua/`
+
+## Persyaratan
+
+- Neovim 0.12 atau lebih baru
+- Git, curl, compiler C, dan `tree-sitter-cli`
+- Nerd Font untuk menampilkan semua ikon
+- Opsional: `lazygit` untuk integrasi Git
 
 ## Instalasi
 
@@ -43,12 +51,22 @@ nvim
 ## Struktur
 
 - `init.lua`: bootstrap dan identitas runtime NierVim
+- `colors/nier.lua`: colorscheme lokal NierVim
+- `lua/config/`: options, keymaps, autocmds, dan komponen UI native
 - `lua/lazy_setup.lua`: dependency dan konfigurasi lazy.nvim
-- `lua/plugins/`: konfigurasi plugin, dashboard, dan tema
-- `lua/community.lua`: AstroCommunity imports
-- `lua/polish.lua`: konfigurasi akhir opsional
+- `lua/plugins/`: spesifikasi dan konfigurasi plugin mandiri
+- `lua/utils/`: helper internal NierVim
 
-## Fondasi
+## Keymap utama
 
-NierVim adalah konfigurasi pengguna, bukan fork engine AstroNvim. Dependency
-AstroNvim tetap diperbarui melalui lazy.nvim dan tercatat di `lazy-lock.json`.
+- `<leader>ff`: cari file
+- `<leader>fg`: cari teks
+- `<leader>e`: buka/tutup file explorer
+- `<leader>bd`: tutup buffer
+- `<leader>ca`: LSP code action
+- `<leader>cf`: format buffer
+- `<leader>l`: buka lazy.nvim
+- `<leader>m`: buka Mason
+
+Leader utama adalah spasi dan local leader adalah koma. Dependency dikunci di
+`lazy-lock.json` agar instalasi dapat direproduksi.
