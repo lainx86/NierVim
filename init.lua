@@ -1,6 +1,6 @@
 vim.g.niervim = {
   name = "NierVim",
-  version = "2.0.0",
+  version = "2.1.0",
 }
 
 vim.g.mapleader = " "
@@ -34,4 +34,4 @@ end
 
 require "lazy_setup"
 
-vim.cmd.colorscheme "nier"
+require("config.theme").setup()

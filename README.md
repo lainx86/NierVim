@@ -11,7 +11,7 @@ dan colorscheme dikonfigurasi langsung di repository ini.
 ## Fitur
 
 - Dashboard kustom dengan identitas NierVim
-- Colorscheme lokal `nier` dengan syntax berkontras tinggi
+- Colorscheme lokal `nier` dengan mode light dan dark
 - LSP dan diagnostics menggunakan API native Neovim
 - Completion melalui `blink.cmp`
 - Treesitter, formatting otomatis, Git signs, file explorer, dan fuzzy finder
@@ -67,6 +67,28 @@ nvim
 - `<leader>cf`: format buffer
 - `<leader>l`: buka lazy.nvim
 - `<leader>m`: buka Mason
+- `<leader>ut`: beralih antara mode light dan dark
 
 Leader utama adalah spasi dan local leader adalah koma. Dependency dikunci di
 `lazy-lock.json` agar instalasi dapat direproduksi.
+
+## Mode warna
+
+NierVim menggunakan mode light secara default. Mode dapat diganti selama sesi
+dengan salah satu cara berikut:
+
+```vim
+:NierMode dark
+:NierMode light
+:NierMode toggle
+```
+
+Untuk memulai langsung dalam mode dark:
+
+```sh
+NIERVIM_THEME=dark nvim
+```
+
+Dark mode membalik warna dasar tema: latarnya memakai warna teks light mode,
+sedangkan foreground dan syntax utamanya memakai warna krem dari background
+light mode.
